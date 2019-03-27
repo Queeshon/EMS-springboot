@@ -5,9 +5,16 @@ package com.collabera.jump.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import io.swagger.annotations.ApiModel;
+
+@Entity
+@ApiModel(value = "Employee Address", description = "address template for employee")
 public class Address implements Serializable {
 
 	/**
@@ -34,9 +41,14 @@ public class Address implements Serializable {
 	@NotNull
 	private String zipCode;
 	
+	@Id
+	@GeneratedValue
 	@NotNull
 	private int id;
 
+	public Address() {
+	}
+	
 	public Address(Integer id, String streetAddress, String city, String state, String zipCode, String country) {
 		this.id = id;
 		this.streetAddress = streetAddress;
@@ -94,4 +106,5 @@ public class Address implements Serializable {
 	public int getId() {
 		return id;
 	}
+	
 }

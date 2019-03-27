@@ -5,7 +5,11 @@ package com.collabera.jump.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -13,6 +17,7 @@ import javax.validation.constraints.Pattern;
 
 import org.springframework.stereotype.Component;
 
+@MappedSuperclass
 @Component
 public class Person implements Serializable {
 
@@ -32,10 +37,11 @@ public class Person implements Serializable {
 	
 	private Gender gender;
 	
-	@Pattern(regexp = "[0-9]{10}", message = "Must be 10 digit integer")
+	@Digits(integer = 12, fraction = 0, message = "Must be 10 digit integer")
 	@NotNull
 	private String phoneNumber;
 	
+	@OneToOne(cascade = CascadeType.ALL)
 	@Valid
 	private Address address;
 

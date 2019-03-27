@@ -49,13 +49,12 @@ public class EmployeeControllerTest {
 				true, 
 				Gender.MALE, 
 				a1, 
-				1, 
 				Department.DEVELOPMENT
 				);
 		
 		ObjectMapper objMapper = new ObjectMapper();
 		
-		mock.perform(get("/api/employees/1")
+		mock.perform(get("/employee/1")
 				.contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 	    	.andExpect(content().json(objMapper.writeValueAsString(emp)));
@@ -77,14 +76,13 @@ public class EmployeeControllerTest {
 				true, 
 				true, 
 				Gender.MALE, 
-				a99, 
-				99, 
+				a99,
 				Department.DEVELOPMENT
 				);
 		
 		ObjectMapper objMapper = new ObjectMapper();
 		
-		mock.perform(post("/api/employees")
+		mock.perform(post("/employee")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(objMapper.writeValueAsString(emp99)))
 		.andExpect(status().isCreated())
@@ -108,23 +106,24 @@ public class EmployeeControllerTest {
 				true, 
 				true, 
 				Gender.MALE, 
-				a1, 
-				1, 
+				a1,
 				Department.DEVELOPMENT
 				);
 		
 		ObjectMapper objMapper = new ObjectMapper();
 		System.out.println(objMapper.writeValueAsString(emp));
-		mock.perform(put("/api/employees/1")
+		mock.perform(put("/employee/1")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(objMapper.writeValueAsString(emp)))
 			.andExpect(status().isOk())
 	    	.andExpect(content().json(objMapper.writeValueAsString(emp)));
 	}
 	
-//	@Test
-//	public void deleteEmployee() {
-//		mock.perform(delete(""));
-//	}
+	@Test
+	public void deleteEmployee() throws Exception {
+		mock.perform(delete("/employee/2").contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(content().string("Employee Deleted"));
+	}
 	
 }

@@ -3,12 +3,22 @@ package com.collabera.jump.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.annotations.ApiModel;
+
+@Entity
+@Table(name = "employee")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@ApiModel(value = "Employee", description = "employee template for EMS")
 public class Employee extends Person implements Serializable, Comparable<Employee> {
 
 	private static final long serialVersionUID = 1L;
@@ -17,6 +27,7 @@ public class Employee extends Person implements Serializable, Comparable<Employe
 	@NotNull
 	private String ssn;
 	
+	@Id
 	@Positive(message = "Must be a positive integer")
 	@NotNull(message = "Must enter an employee ID")
 	private int emp_id;
@@ -38,14 +49,12 @@ public class Employee extends Person implements Serializable, Comparable<Employe
 	@NotNull(message = "Must be active")
 	private boolean active;
 	
-	@NotNull(message = "Must enter a manager ID")
-	private int managerId;
 
 	public Employee() {
 
 	}
 
-	public Employee(String ssn, int emp_id, String jobTitle, String email, String name, int age, String phoneNumber, long salary, boolean isManager, boolean active, Gender gender, Address address, int managerID, Department dept) {
+	public Employee(String ssn, int emp_id, String jobTitle, String email, String name, int age, String phoneNumber, long salary, boolean isManager, boolean active, Gender gender, Address address, Department dept) {
 		super(name, age, gender, phoneNumber, address);
 		
 		this.ssn = ssn;
@@ -55,7 +64,6 @@ public class Employee extends Person implements Serializable, Comparable<Employe
 		this.dept = dept;
 		this.salary = salary;
 		this.isManager = isManager;
-		this.managerId = managerID;
 		this.active = true;
 	}
 
@@ -147,11 +155,4 @@ public class Employee extends Person implements Serializable, Comparable<Employe
 		this.active = active;
 	}
 
-	public int getManagerId() {
-		return managerId;
-	}
-
-	public void setManagerId(int managerId) {
-		this.managerId = managerId;
-	}
 }
