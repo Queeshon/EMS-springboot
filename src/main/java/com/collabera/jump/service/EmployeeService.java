@@ -10,12 +10,13 @@ import com.collabera.jump.exceptions.AddressNotFoundException;
 import com.collabera.jump.exceptions.EmployeeNotFoundException;
 import com.collabera.jump.exceptions.PhoneNumberNotFoundException;
 import com.collabera.jump.model.Address;
+import com.collabera.jump.model.Department;
 import com.collabera.jump.model.Employee;
 import com.collabera.jump.repositories.AddressRepository;
 import com.collabera.jump.repositories.EmployeeRepository;
 
 @Service
-public class EmployeeHelper {
+public class EmployeeService {
 
 	@Autowired
 	private EmployeeRepository er;
@@ -65,13 +66,14 @@ public class EmployeeHelper {
 		}
 	}
 	
-	public List<Employee> getEmployeeBySsn(String ssn) {
-		List<Employee> emps = er.findBySsn(ssn);
+	public List<Employee> getEmployeesByDept(Department dept) {
+		
+		List<Employee> emps = er.findByDept(dept);
 		
 		if(emps != null) {
 			return emps;
 		} else {
-			throw new EmployeeNotFoundException("Employee with social security number: " + ssn + " Not Found");
+			throw new EmployeeNotFoundException("Employees in " + dept + " Not Found");
 		}
 	}
 	

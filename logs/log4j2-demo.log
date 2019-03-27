@@ -1,0 +1,40 @@
+2019-03-27 14:11:37.661  INFO Christians-MacBook-Pro.local --- [           main] c.c.j.EmsApplication                     : Starting EmsApplication on Christians-MacBook-Pro.local with PID 89842 (/Users/christiankim/SpringBoot/EMS/target/classes started by christiankim in /Users/christiankim/SpringBoot/EMS)
+2019-03-27 14:11:37.672  INFO Christians-MacBook-Pro.local --- [           main] c.c.j.EmsApplication                     : No active profile set, falling back to default profiles: default
+2019-03-27 14:11:38.851  INFO Christians-MacBook-Pro.local --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-03-27 14:11:38.940  INFO Christians-MacBook-Pro.local --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83ms. Found 2 repository interfaces.
+2019-03-27 14:11:39.450  INFO Christians-MacBook-Pro.local --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$e556c490] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-27 14:11:39.815  INFO Christians-MacBook-Pro.local --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2019-03-27 14:11:39.835  INFO Christians-MacBook-Pro.local --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-8080"]
+2019-03-27 14:11:39.851  INFO Christians-MacBook-Pro.local --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2019-03-27 14:11:39.852  INFO Christians-MacBook-Pro.local --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-03-27 14:11:39.860  INFO Christians-MacBook-Pro.local --- [           main] o.a.c.c.AprLifecycleListener             : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/christiankim/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-03-27 14:11:39.992  INFO Christians-MacBook-Pro.local --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2019-03-27 14:11:39.993 DEBUG Christians-MacBook-Pro.local --- [           main] o.s.w.c.ContextLoader                    : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2019-03-27 14:11:39.994  INFO Christians-MacBook-Pro.local --- [           main] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 2262 ms
+2019-03-27 14:11:40.211  INFO Christians-MacBook-Pro.local --- [           main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2019-03-27 14:11:40.330  INFO Christians-MacBook-Pro.local --- [           main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2019-03-27 14:11:40.385  INFO Christians-MacBook-Pro.local --- [           main] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-03-27 14:11:40.444  INFO Christians-MacBook-Pro.local --- [           main] o.h.Version                              : HHH000412: Hibernate Core {5.3.7.Final}
+2019-03-27 14:11:40.445  INFO Christians-MacBook-Pro.local --- [           main] o.h.c.Environment                        : HHH000206: hibernate.properties not found
+2019-03-27 14:11:40.559  INFO Christians-MacBook-Pro.local --- [           main] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-03-27 14:11:40.678  INFO Christians-MacBook-Pro.local --- [           main] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-03-27 14:11:41.466  INFO Christians-MacBook-Pro.local --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-03-27 14:11:41.847  INFO Christians-MacBook-Pro.local --- [           main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-03-27 14:11:42.278  WARN Christians-MacBook-Pro.local --- [           main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-03-27 14:11:42.361 DEBUG Christians-MacBook-Pro.local --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 20 mappings in 'requestMappingHandlerMapping'
+2019-03-27 14:11:42.451  INFO Christians-MacBook-Pro.local --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-03-27 14:11:42.528 DEBUG Christians-MacBook-Pro.local --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Patterns [/**/favicon.ico] in 'faviconHandlerMapping'
+2019-03-27 14:11:42.680  INFO Christians-MacBook-Pro.local --- [           main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-27 14:11:42.709 DEBUG Christians-MacBook-Pro.local --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2019-03-27 14:11:42.748 DEBUG Christians-MacBook-Pro.local --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2019-03-27 14:11:42.763 DEBUG Christians-MacBook-Pro.local --- [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2019-03-27 14:11:42.915  INFO Christians-MacBook-Pro.local --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-03-27 14:11:42.939  INFO Christians-MacBook-Pro.local --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-03-27 14:11:42.981  INFO Christians-MacBook-Pro.local --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-03-27 14:11:43.168  INFO Christians-MacBook-Pro.local --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAddressUsingGET_1
+2019-03-27 14:11:43.214  INFO Christians-MacBook-Pro.local --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getEmployeesUsingGET_1
+2019-03-27 14:11:43.241  INFO Christians-MacBook-Pro.local --- [           main] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-8080"]
+2019-03-27 14:11:43.286  INFO Christians-MacBook-Pro.local --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2019-03-27 14:11:43.295  INFO Christians-MacBook-Pro.local --- [           main] c.c.j.EmsApplication                     : Started EmsApplication in 5.976 seconds (JVM running for 7.443)

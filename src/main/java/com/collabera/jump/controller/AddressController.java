@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.collabera.jump.model.Address;
-import com.collabera.jump.service.EmployeeHelper;
+import com.collabera.jump.service.EmployeeService;
 
 @RestController
 @RequestMapping("/employee")
 public class AddressController {
 
 	@Autowired
-	private EmployeeHelper helper;
+	private EmployeeService es;
 	
 	@GetMapping("/{empId}/address")
 	public ResponseEntity<Address> getAddress(@PathVariable Integer id) {
 		
-		Address a = helper.getAddressByEmpId(id);
+		Address a = es.getAddressByEmpId(id);
 		
 		return ResponseEntity.ok(a);
 	}
@@ -32,7 +32,7 @@ public class AddressController {
 	@PutMapping("/{empId}/address")
 	public ResponseEntity<?> updateAddress(@PathVariable int id, @RequestBody @Valid Address a) {
 		
-		if(helper.updateAddress(id, a)) {
+		if(es.updateAddress(id, a)) {
 			return ResponseEntity.created(null).body(a);
 		} else {
 			return ResponseEntity.badRequest().build();

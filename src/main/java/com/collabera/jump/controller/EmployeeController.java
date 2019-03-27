@@ -20,8 +20,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.collabera.jump.exceptions.ExceptionResponse;
 import com.collabera.jump.model.Address;
+import com.collabera.jump.model.Department;
 import com.collabera.jump.model.Employee;
-import com.collabera.jump.service.EmployeeHelper;
+import com.collabera.jump.service.EmployeeService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -32,7 +33,7 @@ import io.swagger.annotations.ApiResponses;
 public class EmployeeController {
 
 	@Autowired
-	private EmployeeHelper helper;
+	private EmployeeService es;
 	
 	//----------------------------------------------GET-------------------------------------------------------------
 	@ApiOperation(
@@ -44,7 +45,7 @@ public class EmployeeController {
 	@GetMapping("/all")
 	public ResponseEntity<List<Employee>> getEmployees() {
 		
-		List<Employee> emps = helper.getEmployees();
+		List<Employee> emps = es.getEmployees();
 		
 		return ResponseEntity.ok(emps);
 	}
@@ -55,10 +56,10 @@ public class EmployeeController {
 			response = Employee.class
 			)
 	@ApiResponses({ @ApiResponse (code = 400, message="Employee Not Found", response = ExceptionResponse.class) })
-	@GetMapping("/{id}")
+	@GetMapping("/id/{id}")
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable Integer id) {
 		
-		Employee emp = helper.getEmployeeById(id);
+		Employee emp = es.getEmployeeById(id);
 		
 		return ResponseEntity.ok(emp);
 	}
@@ -69,10 +70,10 @@ public class EmployeeController {
 			response = Employee.class
 			)
 	@ApiResponses({ @ApiResponse (code = 400, message="Employee Not Found", response = ExceptionResponse.class) })
-	@GetMapping("/{name}")
+	@GetMapping("/name/{name}")
 	public ResponseEntity<Employee> getEmployeeByName(@PathVariable String name) {
 		
-		Employee emp = helper.getEmployeeByName(name);
+		Employee emp = es.getEmployeeByName(name);
 		
 		return ResponseEntity.ok(emp);
 	}
@@ -86,20 +87,21 @@ public class EmployeeController {
 	@GetMapping("/address/{streetAddress}")
 	public ResponseEntity<Employee> getEmployeeByStreet(@PathVariable String streetAddress) {
 		
-		Employee emp = helper.getEmployeeByStreet(streetAddress);
+		Employee emp = es.getEmployeeByStreet(streetAddress);
 		
 		return ResponseEntity.ok(emp);
 	}
 	
 	@ApiOperation(
-			value = "get-employee-by-ssn", 
-			notes = "This is to get a specific employee by social security number", 
-			response = List.class
+			value = "get-employee-by-dept", 
+			notes = "This is to get all employees of a specific department", 
+			response = Employee.class,
+			responseContainer = "List"
 			)
-	@ApiResponses({ @ApiResponse (code = 400, message="Employee Not Found", response = ExceptionResponse.class) })
-	@GetMapping("/{ssn}")
-	public ResponseEntity<List<Employee>> getEmployeeBySsn(@PathVariable String ssn){
-		List<Employee> emps = helper.getEmployeeBySsn(ssn);
+	@ApiResponses({ @ApiResponse (code = 400, message="Employees Not Found", response = ExceptionResponse.class) })
+	@GetMapping("/dept/{dept}")
+	public ResponseEntity<List<Employee>> getEmployeeByDept(@PathVariable Department dept){
+		List<Employee> emps = es.getEmployeesByDept(dept);
 		
 		return ResponseEntity.ok(emps);
 	}
@@ -113,7 +115,7 @@ public class EmployeeController {
 	@GetMapping("/{id}/address")
 	public ResponseEntity<Address> getAddress(@PathVariable Integer id) {
 		
-		Address a = helper.getAddressByEmpId(id);
+		Address a = es.getAddressByEmpId(id);
 		
 		return ResponseEntity.ok(a);
 	}
@@ -127,7 +129,7 @@ public class EmployeeController {
 	@GetMapping("/{id}/phoneNumber")
 	public ResponseEntity<BigInteger> getPhoneNumber(@PathVariable Integer id) {
 		
-		BigInteger pn = helper.getPhoneNumberByEmployeeId(id);
+		BigInteger pn = es.getPhoneNumberByEmployeeId(id);
 		
 		return ResponseEntity.ok(pn);
 	}
@@ -137,7 +139,7 @@ public class EmployeeController {
 	@PostMapping
 	public ResponseEntity<?> createEmployee(@RequestBody @Valid Employee emp) {
 		
-		if(helper.createEmployee(emp)) {
+		if(es.createEmployee(emp)) {
 			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 					.buildAndExpand(emp.getEmpId()).toUri();
 			return ResponseEntity.created(location).body(emp);
@@ -151,7 +153,7 @@ public class EmployeeController {
 	@PutMapping("/{id}")
 	public ResponseEntity<?> updateEmployee(@RequestBody @Valid Employee emp) {
 		
-		if(helper.updateEmployee(emp.getEmpId(), emp)) {
+		if(es.updateEmployee(emp.getEmpId(), emp)) {
 			return ResponseEntity.ok().body(emp);
 		} else {
 			return ResponseEntity.badRequest().build();
@@ -163,7 +165,7 @@ public class EmployeeController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteEmployee(@PathVariable int id) {
 		
-		if(helper.deleteEmployee(id)) {
+		if(es.deleteEmployee(id)) {
 			return ResponseEntity.ok("Employee Deleted");
 		} else {
 			return ResponseEntity.badRequest().build();
